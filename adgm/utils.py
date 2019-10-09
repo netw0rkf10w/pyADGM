@@ -125,6 +125,8 @@ def simplex_projection_sparse(data, indices, indptr, num_vectors):
         # projection for each vector independently
         start = indptr[i]
         end = indptr[i+1]
+        if end <= start:
+            continue
         ci = data[start:end]
         ni = end - start
         a = -np.sort(-ci)
@@ -151,6 +153,8 @@ def simplex_projection_inequality_sparse(data, indices, indptr, num_vectors):
         # projection for each row independently
         start = indptr[i]
         end = indptr[i+1]
+        if end <= start:
+            continue
         ci = data[start:end]
         u = np.maximum(ci, 0)
         if np.sum(u) <= 1:
