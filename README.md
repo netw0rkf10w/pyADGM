@@ -1,7 +1,12 @@
-# ADGM-python
-This is a Python implementation of Alternating Direction Graph Matching (ADGM), which was introduced in the paper [Alternating Direction Graph Matching](https://khue.fr/publication/adgm/) (CVPR 2017) by [D. Khuê Lê-Huu](https://khue.fr) and [Nikos Paragios](http://cvn.centralesupelec.fr/~nikos).
+# Alternating Direction Graph Matching (ADGM)
 
-The official implementation (in C++) can be found in this repo: https://github.com/netw0rkf10w/ADGM.
+This is a Python implementation of Alternating Direction Graph Matching (ADGM),
+which was introduced in the paper
+[Alternating Direction Graph Matching](https://khue.fr/publication/adgm/) (CVPR 2017)
+by [D. Khuê Lê-Huu](https://khue.fr)
+and [Nikos Paragios](http://cvn.centralesupelec.fr/~nikos).
+
+The official C++ implementation can be found here: https://github.com/netw0rkf10w/ADGM.
  
 If you use any part of this code, please cite:
 ```
