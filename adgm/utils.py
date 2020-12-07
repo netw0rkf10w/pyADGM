@@ -131,7 +131,7 @@ def simplex_projection_sparse(data, indices, indptr, num_vectors):
         ni = end - start
         a = -np.sort(-ci)
         lambdas = (np.cumsum(a) - 1)/np.arange(1, ni+1)  
-        xi = 1
+        xi = np.ones(1, )
         for k in range(ni-1, -1, -1):
             if a[k] > lambdas[k]:
                 xi = np.maximum(ci - lambdas[k], 0)
@@ -164,7 +164,7 @@ def simplex_projection_inequality_sparse(data, indices, indptr, num_vectors):
             ni = end - start
             a = -np.sort(-ci)
             lambdas = (np.cumsum(a) - 1)/np.arange(1, ni+1)
-            xi = 1
+            xi = np.ones(1, )
             for k in range(ni-1, -1, -1):
                 if a[k] > lambdas[k]:
                     xi = np.maximum(ci - lambdas[k], 0)
