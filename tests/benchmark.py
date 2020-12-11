@@ -1,11 +1,13 @@
+import sys, os
 import numpy as np
 import scipy.sparse
 import time
 import random
 
-from adgm import *
-from utils import *
-from matching import *
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
+# from adgm.adgm import *
+from adgm.utils import matvec_fast, matvec
+# from adgm.energy import *
 
 np.random.seed(12)
 random.seed(12)
@@ -26,11 +28,11 @@ def check_matvec(m=10000, n=10000, density=0.1, repeat=5):
 
         start = time.time()
         AxCheck = matvec_fast(x, A.data, A.indices, A.indptr, A.shape)
-        matvec_time = time.time() - start
+        matvec_fast_time = time.time() - start
 
-        # start = time.time()
-        # AxCheck2 = matvec2(x, Acoo.data, Acoo.row, Acoo.col, Acoo.shape)
-        time3 = time.time() - start
+        start = time.time()
+        AxCheck2 = matvec(x, Acoo.data, Acoo.row, Acoo.col, Acoo.shape)
+        matvec_time = time.time() - start
 
         # print('norm = ', np.linalg.norm(AxCheck - AxCheck2))
 
@@ -53,7 +55,7 @@ def check_matvec(m=10000, n=10000, density=0.1, repeat=5):
         # # Axmv = matvec.matvec(x, A.data, A.indices, A.indptr, A.shape[0])
         # precompiled_time = time.time() - start
 
-        print('{}) scipy: {:6f} (s), matvec: {:6f} (s), matvec2: {:6f}'.format(i + 1, scipy_time, matvec_time, time3))
+        print('{}) scipy: {:6f} (s), matvec_fast: {:6f} (s), matvec: {:6f}'.format(i + 1, scipy_time, matvec_fast_time, matvec_time))
         # print('norm(scipy - matvec) = {}, norm(scipy - precompiled) = {}'.format(np.linalg.norm(Ax - AxCheck), np.linalg.norm(Ax - Axmv)))
 
         # time.sleep(2)
@@ -153,6 +155,6 @@ def check_potentials(n1, n2, repeat=5):
 
 
 if __name__ == "__main__":
-    # benchmark(m=10000, n=10000, density=0.1, repeat=3)
+    check_matvec(m=10000, n=10000, density=0.1, repeat=3)
     # test2()
-    check_potentials(n1=40, n2=30, repeat=5)
+    # check_potentials(n1=40, n2=30, repeat=5)

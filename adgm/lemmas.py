@@ -25,9 +25,6 @@ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 import numpy as np
 import numba
 
-import matplotlib.pyplot as plt
-from matplotlib import collections  as mc
-
 def simplex_projection(c):
     """
     return a solution to: min ||x - c||_2^2 s.t. dot(1, x) = 1 and x >= 0
@@ -182,7 +179,7 @@ def matvec_fast(x, Adata, Aindices, Aindptr, Ashape):
         because numba needs to initialize.
     """
     m = Ashape[0]    
-    Ax = np.zeros(numRowsA)
+    Ax = np.zeros(m)
 
     for i in numba.prange(m):
         Ax_i = 0.0        
@@ -258,25 +255,3 @@ def reshape_sparse(x, x_linear_indices, x_dim, n1, n2):
         print('ia = {}, i = {}, p = {}'.format(ia, i, p))
         X[i, p] = x[ia]
     return X
-
-def draw_matches(plot, points1, points2, matches=None,
-                 color1='b', color2='b', colorm='g', s=50, linewidth=2):
-    fig, ax = plot
-    # Draw point based on above x, y axis values.
-    plt.scatter(points1[:, 0], points1[:, 1], s=s)
-    plt.scatter(points2[:, 0], points2[:, 1], s=s)
-    if matches is not None:
-        lines = []
-        for i1, i2 in matches:
-            lines.append([points1[i1], points2[i2]])
-
-        colors = [colorm]*len(lines)
-        lc = mc.LineCollection(lines, colors=colors, linewidths=linewidth)
-        ax.add_collection(lc)
-
-
-def matches_from_assignment_matrix(X):
-    """
-    return a list of matches
-    """
-    return np.transpose(np.nonzero(X))
