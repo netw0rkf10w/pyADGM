@@ -160,7 +160,7 @@ draw_results(plot, points1, points2, X=X_gt)
 plt.show()
 ```
 
-![Ground-truth matching](output/ground-truth.jpg?raw=true "Ground-truth matching")
+<img src="output/ground-truth.jpg?raw=true" width="500px" alt="Ground-truth matching">
 
 
 ## Matching using fully-connected graphs
@@ -215,7 +215,7 @@ draw_results(plot, points1, points2, X=X_dense, X_gt=X_gt)
 plt.show()
 ```
 
-![Dense matching](output/dense.jpg?raw=true "Dense matching")
+<img src="output/dense.jpg?raw=true" width="500px" alt="Dense matching">
 
 <span style="color:green">Green</span>: Good matches (True positives). <span style="color:red">Red</span>: Bad matches (False positives). <span style="color:yellow">Yellow</span>: Missed matches (False negatives).
 ### Matching using sparse graphs
@@ -254,7 +254,7 @@ draw_results(plot, points1, points2, X=X_dense, X_gt=X_gt)
 plt.show()
 ```
 
-![Sparse matching](output/sparse.jpg?raw=true "Sparse matching")
+<img src="output/sparse.jpg?raw=true" width="500px" alt="Sparse matching">
 
 
 # Notes
