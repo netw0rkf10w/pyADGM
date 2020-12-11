@@ -6,7 +6,7 @@ which was introduced in the paper
 by [D. Khuê Lê-Huu](https://khue.fr)
 and [Nikos Paragios](http://cvn.centralesupelec.fr/~nikos).
 
-The official C++ implementation can be found here: https://github.com/netw0rkf10w/ADGM.
+A C++ implementation (with MATLAB wrapper) for hyper-graphs can be found here: https://github.com/netw0rkf10w/ADGM. I will add support for hyper-graphs to this repo in the future.
  
 If you use any part of this code, please cite:
 ```
