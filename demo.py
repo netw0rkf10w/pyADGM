@@ -65,7 +65,7 @@ def main():
     plot = plt.subplots()
     plot[1].title.set_text('Ground-truth matching')
     draw_results(plot, points1, points2, X=X_gt)
-    plt.savefig(os.path.join(output_dir, 'ground-truth.jpg'), dpi=600, bbox_inches='tight')
+    # plt.savefig(os.path.join(output_dir, 'ground-truth.jpg'), dpi=600, bbox_inches='tight')
     
     # Graph matching
 
@@ -105,7 +105,7 @@ def main():
     plot = plt.subplots()
     plot[1].title.set_text('Fully-connected graph matching')
     draw_results(plot, points1, points2, X=X_dense, X_gt=X_gt)
-    plt.savefig(os.path.join(output_dir, 'dense.jpg'), dpi=600, bbox_inches='tight')
+    # plt.savefig(os.path.join(output_dir, 'dense.jpg'), dpi=600, bbox_inches='tight')
     
     # Sparse graphs
     # Building the graphs based on Delaunay triangulation
@@ -128,7 +128,7 @@ def main():
     plot[1].title.set_text('Sparse graph matching')
     plt.triplot(points1[:,0], points1[:,1], tri1.simplices, color='b')
     plt.triplot(points2[:,0], points2[:,1], tri2.simplices, color='b')
-    draw_results(plot, points1, points2, X=X_dense, X_gt=X_gt)
+    draw_results(plot, points1, points2, X=X_sparse, X_gt=X_gt)
     plt.savefig(os.path.join(output_dir, 'sparse.jpg'), dpi=600, bbox_inches='tight')
     plt.show()
 
