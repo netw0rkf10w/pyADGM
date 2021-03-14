@@ -11,10 +11,15 @@ A C++ implementation (with MATLAB wrapper) for hyper-graphs can be found here: h
 If you use any part of this code, please cite:
 ```
 @inproceedings{lehuu2017adgm,
- title={Alternating Direction Graph Matching},
- author={L{\^e}-Huu, D. Khu{\^e} and Paragios, Nikos},
- booktitle = {Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
- year = {2017}
+  author    = {D. Khu{\^{e}} L{\^{e}}{-}Huu and Nikos Paragios},
+  title     = {Alternating Direction Graph Matching},
+  booktitle = {2017 {IEEE} Conference on Computer Vision and Pattern Recognition,
+               {CVPR} 2017, Honolulu, HI, USA, July 21-26, 2017},
+  pages     = {4914--4922},
+  publisher = {{IEEE} Computer Society},
+  year      = {2017},
+  url       = {https://doi.org/10.1109/CVPR.2017.522},
+  doi       = {10.1109/CVPR.2017.522}
 }
 ```
 
