@@ -72,7 +72,7 @@ matrix as it will make matching much faster and more accurate.
 - `X0` (`numpy.ndarray`, optional): An `n1 x n2` array used for initializing ADGM.
 - `kwargs` (`dict`, optional): ADGM optimization parameters. For example:
 ```python
-    kwargs = {'rho_min': max(10**(-60.0/np.sqrt(n1*n2)), 1e-4),
+    kwargs = {'rho': max(10**(-60.0/np.sqrt(n1*n2)), 1e-4),
               'rho_max': 100,
               'step': 1.2,
               'precision': 1e-5,
@@ -160,7 +160,7 @@ draw_results(plot, points1, points2, X=X_gt)
 plt.show()
 ```
 
-<img src="output/ground-truth.jpg?raw=true" width="500px" alt="Ground-truth matching">
+<img src="figures/ground-truth.jpg?raw=true" width="500px" alt="Ground-truth matching">
 
 
 ## Matching using fully-connected graphs
@@ -197,7 +197,7 @@ P_dense = build_pairwise_potentials(points1, points2,
                 assignment_mask=assignment_mask, len_weight=len_weight)
 
 # Call ADGM solver
-kwargs = {'rho_min': max(10**(-60.0/np.sqrt(n1*n2)), 1e-4),
+kwargs = {'rho': max(10**(-60.0/np.sqrt(n1*n2)), 1e-4),
           'rho_max': 100,
           'step': 1.2,
           'precision': 1e-5,
@@ -215,7 +215,7 @@ draw_results(plot, points1, points2, X=X_dense, X_gt=X_gt)
 plt.show()
 ```
 
-<img src="output/dense.jpg?raw=true" width="500px" alt="Dense matching">
+<img src="figures/dense.jpg?raw=true" width="500px" alt="Dense matching">
 
 <span style="color:green">Green</span>: Good matches (True positives). <span style="color:red">Red</span>: Bad matches (False positives). <span style="color:yellow">Yellow</span>: Missed matches (False negatives).
 ### Matching using sparse graphs
@@ -254,11 +254,11 @@ draw_results(plot, points1, points2, X=X_dense, X_gt=X_gt)
 plt.show()
 ```
 
-<img src="output/sparse.jpg?raw=true" width="500px" alt="Sparse matching">
+<img src="figures/sparse.jpg?raw=true" width="500px" alt="Sparse matching">
 
 
 # Notes
 1. The very first execution of the code will be a bit slow because Numba needs to
-compiles some functions at the first run (see [here](https://numba.pydata.org/numba-doc/latest/user/performance-tips.html) for more details).
+compile some functions at the first run (see [here](https://numba.pydata.org/numba-doc/latest/user/performance-tips.html) for more details).
 
 2. If the displacement of the sets of points are too large in terms of both scaling and rotation, it would be better to use sparse graphs instead of fully-connected ones.

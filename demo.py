@@ -89,7 +89,7 @@ def main():
     print('Building dense potentials time (s):', time.time() - start)
     # Call ADGM solver
     # ADGM parameters
-    kwargs = {'rho_min': max(10**(-60.0/np.sqrt(n1*n2)), 1e-4),
+    kwargs = {'rho': max(10**(-60.0/np.sqrt(n1*n2)), 1e-4),
               'rho_max': 100,
               'step': 1.2,
               'precision': 1e-5,

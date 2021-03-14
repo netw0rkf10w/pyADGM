@@ -171,7 +171,7 @@ def simplex_projection_inequality_sparse(data, indices, indptr, num_vectors):
 
 
 @numba.jit(nopython=True, parallel=True, cache=True)
-def matvec_fast(x, Adata, Aindices, Aindptr, Ashape):
+def matvec_csr(x, Adata, Aindices, Aindptr, Ashape):
     """
     Fast sparse matrix-vector multiplication
     https://stackoverflow.com/a/47830250/2131200
@@ -190,6 +190,19 @@ def matvec_fast(x, Adata, Aindices, Aindptr, Ashape):
     return Ax
 
 
+@numba.jit(nopython=True, cache=True)
+def matvec_coo(x, Adata, Arow, Acol, Ashape):
+    """Sparse mat-vec multiplication for COO format
+    """
+    m = Ashape[0]    
+    y = np.zeros(m, dtype=Adata.dtype)
+    nnz = len(Adata)
+    for idx in range(nnz):
+        y[Arow[idx]] += Adata[idx]*x[Acol[idx]]
+    return y
+
+
+@numba.jit(nopython=True, cache=True)
 def matvec(x, Adata, Aindices, Aindptr, Ashape):
     """
     naive
