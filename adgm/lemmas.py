@@ -203,6 +203,27 @@ def matvec_coo(x, Adata, Arow, Acol, Ashape):
 
 
 @numba.jit(nopython=True, cache=True)
+def outer_masked_coo(x, y, Arow, Acol):
+    """Compute the outer product between x (m-dimensional) and y (n-dimensional),
+    and return only the elements corresponding (in terms of position) to the
+    non-zeros of a sparse matrix A of shape (m, n). If A is dense then the result
+    is the full outer product of x and y, which is of shape (m, n).
+    Args:
+        x: m-dimensional vector
+        y: n-diemnsional vector
+        Arow: vector of row indices of A
+        Acol: vector of column indices of A
+    Return:
+        Pdata: nnz-dimensional vector, where nnz is the number of non-zeros of A.
+    """
+    nnz = len(Arow)
+    Pdata = np.zeros(nnz)
+    for idx in range(nnz):
+        Pdata[idx] = x[Arow[idx]]*y[Acol[idx]]
+    return Pdata
+    
+
+@numba.jit(nopython=True, cache=True)
 def matvec(x, Adata, Aindices, Aindptr, Ashape):
     """
     naive
